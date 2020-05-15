@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style2.css"> -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+
+</head>
+<body onload="button()">
+<style>
+.button {
+    width: 100px;
+    height: 30px;
+    display: inline-block;
+    background-color: black;
+    margin: 0 10px 10px 0;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    border-radius:4px
+  }
+  
+  .button:hover {
+    background-color: red;
+  }body{
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      margin-top: -137px;
+  }
+  .btn {
+      border: none;
+      outline: none;
+      padding: 5px 2px;
+      background-color: #f1f1f1;
+      cursor: pointer;
+      font-size: 18px;
+      display: block;
+      color: black;
+      width: 130px;
+      height: 35px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      
+    }
+  
+    #myDIV{
+        margin-left: 411px;
+        margin-top: 162px;
+    }
+    hr.new2 {
+      border-top: 1.5px dotted black;
+      width: 660px;
+      margin-left: 468px;
+        }
+    
+   
+    /* Style the active class, and buttons on mouse-over */
+    
+    .btn:hover {
+      background-color:rgb(69,175,79);
+      color: white;
+    }
+   
+    .active{
+    background-color:grey;
+    color: white;
+    }
+    #card {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      float: left;
+      width: 355px;
+      height: 215px;
+      background-color:rgb(242, 242, 242);
+      margin-left: 480px;
+      margin-top: 0px;
+      border-radius: 4px;
+      
+  
+    }
+    #forcnn{
+        font-weight: bolder;
+        font-size: 20px;
+        margin-left: 774px;
+        margin-bottom: -2px;
+        margin-top: 32px;
+  
+    }
+    #forfox{
+      font-weight: bolder;
+        font-size: 20px;
+        margin-left: 750px;
+        margin-bottom: 11px;
+        margin-top: 24px;
+  
+    }
+    #card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    #card1 {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      float: left;
+      left: 20px;
+      width: 70%;
+      width: 250px;
+      height: 215px;
+      background-color:rgb(242, 242, 242);
+      margin-top: 4px;
+      margin-left: 31px;
+      
+      
+    }
+ 
+    .pcnn{
+        margin-top: -22px;
+        text-align: center;
+        font-size: 12px;
+    }
+    .pfox{
+      margin-top: -22px;
+        text-align: center;
+        font-size: 12px;
+    }
+    button.top
+    {
+        margin-top: 4px;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        border:0.5px solid rgb(188,187,188);
+        border-bottom : none;
+        position: fixed;
+        margin-left: -110px;
+        font-size: 15px;
+    }
+    
+    .cardcnn {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.1s;
+      width: 218px;
+      float: left;
+      flex:1;
+      cursor: pointer;
+      margin-right: 7.5px;
+      background-color:rgb(242, 242, 242);
+      border-radius: 5px;
+      border:0.5px solid rgb(188,187,188);
+    }
+    
+    .cardcnn:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    .containercnn {
+      padding: 0px 4px;
+
+    }
+   #fox{
+     margin-left: 1075px;
+     margin-bottom: 2px;
+   }
+    #cnntable{
+      margin-left: 474px;
+      width: 655px;
+  
+    }
+    
+  
+  .content {
+      width: 400px;
+      height: 100px;
+      display: block;
+      margin-top: -90px;
+      
+    }
+    
+    .hide {
+      display: none;
+    }
+  
+    #foxtable{
+      margin-left: 474px;
+      display: flex;
+      width: 655px;
+      margin-bottom: 14px;
+      
+
+        
+    }
+    .cardfox {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.1s;
+      width: 218px;
+      float:left;
+      flex: 1;
+      cursor: pointer;
+      margin-right: 7.5px;
+      background-color:rgb(242, 242, 242);
+      margin-top: 3px;
+      border-radius: 4px;
+      border:0.5px solid gray;
+
+    }
+    
+    .cardfox:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    .containerfox {
+      padding: 2px 4px;
+    }
+  
+    #grid{
+      margin-left: 484px;
+      width: 590px;
+      height: 140px;
+      background-color:rgb(242, 242, 242);
+      margin-bottom: 27px;
+      margin-top: -98px;
+      border-radius: 6px;
+    }
+    button.bottom{
+      border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        border:0.5px solid rgb(188,187,188);
+        border-top: none;
+        position: fixed;
+        margin-top : 39px;
+        margin-left: -110px;
+        font-size: 15px;
+   
+    }
+    .bttn{
+      height: 22px;
+      width: 53px ;
+      border:none;
+      background-color:rgb(242, 242, 242);
+      font-size: 11px;
+      border-radius: 3px;
+    }
+    .bttn:hover {
+      background-color:rgb(69,175,79);
+      color: white;
+    }
+    .cardb {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.1s;
+      width: 529px;
+      min-height: 85px;
+      padding: 6px;
+      background-color:rgb(242, 242, 242);
+      margin-left: 273px;
+      margin-top: 14px;
+      border-radius: 5px;
+      border:0.5px solid rgb(188,187,188);
+      cursor: pointer;
+    
+     
+    }
+    
+    .cardb:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    .contentofcard{
+  padding: 17px;
+    }
+    .cardimg{
+      height: 55px;
+      width: 55px;
+      float: left;
+      padding: 9px;
+      padding-bottom: 14px;
+      object-fit: cover;
+    }
+    .cuttext{
+    margin-left: 77px;
+    cursor: initial;
+    font-size: 13px;
+    display: none;
+    
+    }
+
+    .headerclass{
+      margin-left: 76px;
+      margin-top: 6px;
+      margin-bottom: 5px;
+      padding-right: 40px;
+      font-size: 13px;
+    }
+    #belowcard{
+      margin-left: 239px;
+      display: grid;
+    }
+    .cnnimg{
+        border-radius: 5px;
+        width: 158px;
+        height: 110px;
+        object-fit: cover;
+    }
+    .foximg{
+      border-radius: 5px;
+        width: 158px;
+        height: 110px;
+        object-fit: cover;
+       
+    }
+  .container {
+  position: relative;
+  
+}
+.containertext {
+  
+  width: 315px;
+  /* max-height: 160px; */
+  background:rgba(0, 0, 0, 0.5);
+  color : white;
+  padding-left: 20px;
+  padding-right: 20px;
+  bottom: 0px;
+  position:absolute;
+  cursor:pointer;  
+  text-align: center;
+
+}
+.containercard{
+  width: 355px;
+      height: 215px;
+  position: relative;
+
+}
+.truncate{
+  
+            /* overflow: hidden;  */
+            /* text-overflow: ellipsis;  */
+            /* display: -webkit-box;  */
+            /* line-height: 17px;   */
+            /* max-height: 75px;     */
+            font-size: 13px;  
+            margin-top: -14px;
+            margin-bottom: 1px;
+            /* -webkit-line-clamp: 10;   */
+            /* -webkit-box-orient: vertical;  */
+}
+h4.h4cnn{
+
+    font-size: 13px;
+    margin-top: 13px;
+    text-align: center;
+    margin-bottom: 31px;
+}
+h4.h4fox{
+
+  font-size: 13px;
+    margin-top: 13px;
+    text-align: center;
+    margin-bottom: 31px;
+}
+.render{
+
+    width: 355px;
+    height:215px;
+    cursor: pointer;
+    object-fit: cover;
+
+}
+#source{
+  height: 20px;
+  width: 92px;
+  text-align: center;
+  margin-left: 12px;
+  border-radius: 3px;
+  text-align: center;
+}
+.cutthis{
+  /* overflow: hidden; 
+  text-overflow: ellipsis;
+  white-space: nowrap; */
+  margin-top:-11px;
+  
+}
+.internalheader{
+  margin-top:0px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 14px;
+}
+#ptag{
+margin-top: -11px;
+}
+.crossbutton{
+  float: right;
+  font-size: 30px;
+  margin-top : -10px;
+  margin-right: 2px;
+  cursor: pointer;
+  display: none;
+  
+}
+
+#ptag_1{
+  margin-bottom: 4px;
+  margin-top: -9px;
+}
+.boldsize{
+  font-size: 15px;
+  text-align: center;
+}
+.h4top{
+  margin-top: 2px;
+}
+#button_show{
+    margin-bottom: 8px;
+    margin-top: 13px;
+    width: 92px;
+    margin-left: 500px;
+    height: 26px;
+    border: none;
+    border-radius: 3px;
+}
+#button_show:hover
+{
+  background-color:rgb(69,175,79);
+      color: white;
+}
+
+#button_less{
+    margin-bottom: 8px;
+    margin-top: 13px;
+    width: 92px;
+    margin-left: 500px;
+    height: 26px;
+    border: none;
+    border-radius: 3px;
+}
+#button_less:hover
+{
+  background-color:rgb(69,175,79);
+      color: white;
+}
+.temp{
+  width: 300px;
+    margin-left: 518px;
+    font-size: 14px;
+    margin-top: -10px;
+}
+  
+
+</style>
+ <div class="stickyy">
+
+  <div id="myDIV">
+    <button class="btn top active" onclick="switch_div(1)">Google News</button>
+    <button class="btn bottom" onclick="switch_div(2)">Search</button>
+  </div>
+
+ </div>
+     
+<div class="content" id="show_1" >
+<table>
+<tr>
+    <td style="width: 1px;">
+        <div id="card">
+        </div>
+    </td>
+    <td>
+        <div id="card1" >
+        </div>
+    </td>
+</tr>
+<tr>
+    <td colspan="3">
+        <p id = "forcnn">CNN</p>
+        <hr class="new2">
+    </td>
+</tr>
+</table >
+
+<div id = "cnntable" style="display: flex;">
+</div>
+
+<table>
+<tr>
+  <td colspan="3">
+      <p id = "forfox">Fox News</p>
+      <hr class="new2">
+  </td>
+</tr>
+</table >
+
+          
+<div id = "foxtable" style="display: flex;">
+  
+</div>
+
+
+ 
+</div>
+<div class="content hide" id="show_2">
+  <form name="searchform" id = "grid" onsubmit="return false">
+    <div  style="padding-top: 16px; padding-left: 13px; font-size: 11px; font-weight:500" >
+      <label style="font-family:Georgia, 'Times New Roman', Times, serif; display: inline;">Keyword</label>
+      <p style="color: red; display: inline;">*</p>
+      <input required name="textbox" oninput="redborder()" type="text"  size="18" id="keyword" style="margin-left:11px; height:21px;width: 100px;border: 1px solid red;outline: none; border-radius: 3px;">
+
+      <label style="font-family:Georgia, 'Times New Roman', Times, serif; display: inline; margin-left: 18px;">From</label>
+      <p style="color: red; display: inline;">*</p>
+      <input required type="date" id="nottoday" name="nottoday" size="18" style="margin-left:15px;height:20px;width: 126px; border-radius: 3px; height:22px;border:none; ">
+
+      <label style="font-family:Georgia, 'Times New Roman', Times, serif; display: inline; margin-left: 18px;">To</label>
+      <p style="color: red; display: inline;">*</p>
+      <input required type="date" id="today" name="today" size="18" style="margin-left:15px; height:22px;width: 126px;border:none; border-radius: 3px;">
+    </div>
+    <div id="bothlist"  style="padding-top: 30px; padding-left: 13px; font-size: 11px; font-weight: 500;" >
+      <label for="Category" style="font-family:Georgia, 'Times New Roman', Times, serif; display: inline;margin-left: 108px;text-align: center;">Category</label>
+      <select id="Category" onchange="senddata(this.value)" style="height: 20px;width: 92px;text-align: center;margin-left: 12px;border-radius: 3px;">
+        <option selected value="all">all</option>
+        <option value="business">business</option>
+        <option value="entertainment">entertainment</option>
+        <option value="general">general</option>
+        <option value="health">health</option>
+        <option value="science">science</option>
+        <option value="sports">sports</option>
+        <option value="technology">technology</option>
+      </select>
+      <label for="Category" style="font-family:Georgia, 'Times New Roman', Times, serif; display: inline;margin-left: 16px;">Source</label>
+      <select id="source">
+      </select>
+    </div>
+    <div style="margin-top:15px;margin-left: 243px; font-weight: 500;">
+        <input type="submit" value="Search" onclick = "searchdata()" class="bttn">
+        <input type="button" class="bttn" onclick="resetthis()" value="Clear" style="margin-left: 12px;">
+      </div>
+  </form>
+<div id="belowcard">
+      
+</div>
+</div>
+
+<script>
+
+function button()
+{
+  document.querySelector("#today").valueAsDate = new Date();
+  document.querySelector("#nottoday").valueAsDate = new Date(new Date().setDate(new Date().getDate() - 7));
+  var header = document.getElementById("myDIV");
+        var btns = header.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].addEventListener("click", function() {
+          var current = document.getElementsByClassName("active");
+          current[0].className = current[0].className.replace(" active", "");
+          this.className += " active";
+          });
+
+        }
+
+}
+
+function deleteit(numm)
+{
+  
+  document.getElementById("thisis"+numm).style.display = "block"
+  document.getElementById("showthis"+numm).style.display = "none";
+  document.getElementById("cross"+numm).style.display = "none";
+
+  event.stopPropagation();
+
+}
+function searchdata(variable)
+{
+  var qq = document.getElementById("belowcard")
+  qq.innerHTML = ""
+  flag = validation()
+  if (flag == true) {
+  console.log("hererere")
+  keywordsearch = document.getElementById("keyword").value;
+  from_date = document.getElementById("nottoday").value;
+  To_date = document.getElementById("today").value;
+  category_search = document.getElementById("Category").value
+  source_search = document.getElementById("source").value
+  var send_data = new XMLHttpRequest();
+  var url = "/getsearchresult"+"?keyword="+keywordsearch+"&"+"from="+from_date+"&"+"todate="+To_date+"&"+"category="+category_search+"&"+"source="+source_search;
+  send_data.open("GET", url, true);
+  send_data.setRequestHeader("Content-Type", "application/json");
+  send_data.onreadystatechange = function () {
+    if (send_data.readyState === 4 && send_data.status === 200) {
+      console.log("this is json search status",send_data.responseText);
+      strtemp = send_data.responseText
+        if (strtemp.includes("You are trying to request") == true)
+        {
+          alert(strtemp.substr(60,204));
+          return
+        }
+        var json_data = JSON.parse(send_data.responseText);
+        
+        generatecard(json_data)
+    }
+};
+send_data.send();
+
+
+  }
+  
+} 
+
+function showmore(value)
+{
+  
+  document.getElementById("thisis"+value).style.display = "none"
+  document.getElementById("showthis"+value).style.display = "block";
+  document.getElementById("cross"+value).style.display = "block";
+  document.getElementById("")
+  
+
+}
+  function senddata(selected)
+{
+  console.log(selected) 
+  var xhr = new XMLHttpRequest();
+  var url = "/"+selected+"?data=" + selected;
+  // encodeURIComponent(JSON.stringify({"email": selected}));
+  xhr.open("GET", url, true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        var json = JSON.parse(xhr.responseText);
+        console.log("thisis",json);
+        listmaker(json)
+    }
+};
+xhr.send();
+
+}
+  xmlhttp=new XMLHttpRequest();
+  var jsonObj
+  xmlhttp.onreadystatechange = function()
+        {
+          if(this.readyState == 4 && this.status == 200) {
+           jsonObj= JSON.parse(xmlhttp.responseText);
+           console.log(jsonObj)
+           generatehtml(jsonObj);
+           world(jsonObj);
+          } 
+        }
+  xmlhttp.open("GET",'/alldata',true);
+  xmlhttp.send()
+
+ function generatehtml(jsonObj)
+{
+    var cnnarticles1 = jsonObj["cnnnews"]
+    var cnnarticles = cnnarticles1["articles"]
+    var foxarticles1 = jsonObj["foxnews"]
+    var foxarticles = foxarticles1["articles"]
+    var renderarticles1 = jsonObj["rendernews"]
+    var renderarticles = renderarticles1["articles"]
+    
+    var lenren = renderarticles.length
+    var lencnn = cnnarticles.length
+    var lenfox = foxarticles.length
+    
+    
+
+    if (lenren >= 5)
+    {
+        var lenrenup = 5
+    }
+    else{
+        var lenrenup = lenren
+    }
+    console.log(lenrenup)
+    if (lencnn >= 4)
+    {
+        var lencnnup = 4
+    }
+    else{
+        var lencnnup = lenren
+    }
+
+
+    if (lenfox >= 4)
+    {
+        var lenfoxup = 4
+    }
+    else{
+        var lenfoxup = lenren
+    }
+
+    console.log(lencnn)
+    console.log(lenfox)
+    console.log(lenren)
+
+    for(i=0;i<lenrenup;i++)
+    {
+      
+      var urllll = renderarticles[i]["url"]
+      
+      var cardrenderdiv = document.createElement("div");
+      cardrenderdiv.setAttribute("class","containercard");
+      var renderimg = document.createElement("img");
+      renderimg.setAttribute("class","render");
+      renderimg.setAttribute("src",renderarticles[i]["urlToImage"]);
+      renderimg.setAttribute("onclick","window.open(\""+urllll+"\",'_blank')")
+      var containertext1 = document.createElement("div");
+      containertext1.setAttribute("class","containertext");
+      containertext1.setAttribute("onclick","window.open(\""+urllll+"\",'_blank')")
+      var h4hhh = document.createElement("h4");
+      h4hhh.setAttribute("class","h4top")
+      var bolddd = document.createElement("b");
+      bolddd.setAttribute("class","boldsize")
+      bolddd.innerHTML = renderarticles[i]["title"];
+      var pppp = document.createElement("p");
+      pppp.setAttribute("class","truncate")
+      pppp.innerHTML = renderarticles[i]["description"]
+      cardrenderdiv.appendChild(renderimg)
+      containertext1.appendChild(h4hhh)
+      h4hhh.appendChild(bolddd)
+      containertext1.appendChild(pppp)
+      cardrenderdiv.appendChild(containertext1)
+      document.getElementById("card").appendChild(cardrenderdiv);
+      
+}
+    
+    for(i=0;i<lencnnup;i++)
+    {
+      
+      if (typeof (cnnarticles[i]["url"] !== undefined ))
+      {
+        var urll = cnnarticles[i]["url"]
+      }
+      
+      var cardcnndiv = document.createElement("div");
+      cardcnndiv.setAttribute("class","cardcnn");
+      cardcnndiv.setAttribute("onclick","window.open(\""+urll+"\",'_blank')")
+      var cnnimg = document.createElement("img");
+      cnnimg.setAttribute("class","cnnimg");
+      cnnimg.setAttribute("src",cnnarticles[i]["urlToImage"]);
+      var containcnndiv = document.createElement("div");
+      containcnndiv.setAttribute("class","containercnn");
+      var h4h = document.createElement("h4");
+      h4h.setAttribute("class","h4cnn")
+      var bold = document.createElement("b");
+     
+      bold.innerHTML = cnnarticles[i]["title"];
+      var pp = document.createElement("p");
+      pp.setAttribute("class","pcnn")
+      pp.innerHTML = cnnarticles[i]["description"]
+      cardcnndiv.appendChild(cnnimg)
+      containcnndiv.appendChild(h4h)
+      h4h.appendChild(bold)
+      containcnndiv.appendChild(pp)
+      cardcnndiv.appendChild(containcnndiv)
+      document.getElementById("cnntable").appendChild(cardcnndiv);
+
+}
+
+for(i=0;i<lenfoxup;i++)
+    {
+      var urlll = foxarticles[i]["url"]
+      var cardfoxdiv = document.createElement("div");
+      cardfoxdiv.setAttribute("class","cardfox");
+      cardfoxdiv.setAttribute("onclick","window.open(\""+urlll+"\",'_blank')")
+      var foximg = document.createElement("img");
+      foximg.setAttribute("class","foximg");
+      foximg.setAttribute("src",foxarticles[i]["urlToImage"]);
+      var containfoxdiv = document.createElement("div");
+      containfoxdiv.setAttribute("class","containerfox");
+      var h4hh = document.createElement("h4");
+      h4hh.setAttribute("class","h4fox")
+      var boldd = document.createElement("b");
+      boldd.innerHTML = foxarticles[i]["title"];
+      var ppp = document.createElement("p");
+      ppp.setAttribute("class","pfox")
+      ppp.innerHTML = foxarticles[i]["description"]
+      cardfoxdiv.appendChild(foximg)
+      containfoxdiv.appendChild(h4hh)
+      h4hh.appendChild(boldd)
+      containfoxdiv.appendChild(ppp)
+      cardfoxdiv.appendChild(containfoxdiv)
+      document.getElementById("foxtable").appendChild(cardfoxdiv);
+
+}
+
+
+
+var myIndex = 0;
+slides();
+
+function slides() {
+  var i;
+  var x = document.getElementsByClassName("containercard");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(slides, 4000); 
+}
+  
+
+}
+
+
+function listmaker(json)
+{
+  var n = document.getElementById("source")
+  var lenn = document.getElementById("source").length
+  
+  if (lenn != 0)
+  {
+    console.log("Andar cihitee",lenn)
+    for(i = lenn ; i > 0 ; i--)
+    {
+       n.removeChild(n.childNodes[i])
+    }
+  }
+  var data = json["sources"]
+  var ll = data.length
+  if (ll >= 10)
+  {
+   var ll2 = 10
+  }
+  else
+ {
+  var ll2 = ll
+ }
+ console.log("ll2",ll2)
+ 
+ var option_pre = document.createElement("option");
+ option_pre.setAttribute("value","all")
+ option_pre.innerHTML = "all"
+ option_pre.setAttribute.selected
+ n.appendChild(option_pre)
+
+  for(i=0;i < ll2;i++)
+  {
+    console.log(ll2)
+    var data1 = data[i]
+    var isid = data1["id"]
+    var names = data1["name"]
+    var options = document.createElement("option");
+    options.setAttribute("value",isid)
+    options.innerHTML = names
+    n.appendChild(options)
+   
+
+  }
+  document.getElementById("bothlist").appendChild(n);
+}
+  
+function redborder()
+{
+inputText = document.getElementById("keyword");
+
+if(inputText.value!="")
+{
+  inputText.style.borderColor = "white";
+}
+else{
+  inputText.style.borderColor = "red";
+}
+}
+
+function world(jsonObj)
+{
+ var myWords = jsonObj["wordcloud"]
+ 
+ 
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right:10, bottom: 10, left: 10},
+    width = 230,
+    height = 200;
+
+// append the svg object to the body of the page
+var svg = d3.select("#card1").append("svg")
+    .attr("width", width+margin.left+margin.right)
+    .attr("height", height +margin.top +margin.bottom)
+  .append("g")
+    
+
+// Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
+// Wordcloud features that are different from one word to the other must be here
+var layout = d3.layout.cloud()
+  .size([width, height])
+  .words(myWords.map(function(d) { return {text: d.word, size:d.size}; }))
+  .padding(3)        //space between words
+  .rotate(function() { return ~~(Math.random() * 2) * 90; })
+  .fontSize(function(d) { return d.size*4.5; })      // font size of words
+  .on("end", draw);
+layout.start();
+
+// This function takes the output of 'layout' above and draw the words
+// Wordcloud features that are THE SAME from one word to the other can be here
+function draw(words) {
+  svg
+    .append("g")
+      .attr("width","500px")
+      .attr("transform", "translate(" + 120 + "," + 110 + ")")
+      .selectAll("text")
+        .data(words)
+      .enter().append("text")
+        .style("font-size", function(d) { return d.size+"px"; })
+        .style("fill", "black")
+        .attr("text-anchor", "middle")
+        .style("font-family", "Impact")
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+}
+}
+
+function validation(){
+
+
+  var current1 = document.getElementById('today').value;
+  // var current = new Date(current1)//converts string to date object
+  var later1 = document.getElementById('nottoday').value;
+  // var later = new Date(later1)
+  // var day = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+  // var diff = Math.abs((current.getTime() - later.getTime()) / (day));
+  // var ms = current.getTime() - 604800000;
+  // var d = new Date(ms);
+
+  // function formatedate(dd)
+  // {
+  // var date = dd.getDate() + 1;
+  // var month = dd.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
+  // var year = dd.getFullYear();
+  // var dateStr = year + "-" + month + "-" + date;
+
+  // return dateStr
+  // }
+  
+  
+
+if(later1 > current1){
+    alert('Incorrect Time!');
+    return false;
+}
+return true
+// else{
+//   if(diff > 7)
+//   {
+//     alert("You are trying to request result too far in the past. Your plan permits you to request article as far back as "+formatedate(d)+", but you have requested " +formatedate(later)+". To exted this  please upgrade to a paid plan")
+//     return false;
+//   }
+//   return true;
+// }
+
+}
+
+function generatecard(object)
+{
+
+ data = object["articles"]
+
+ if(data == null)
+ {
+  var qq = document.getElementById("belowcard")
+  qq.innerHTML = ""
+  var temp = document.createElement("div")
+  temp.setAttribute("class","temp")
+  temp.innerHTML = "No Result"
+  qq.appendChild(temp)
+   return
+ }
+ console.log("this is data we got",data)
+ fin_len = 15
+ len1 = data.length
+ if (len1 >= 15)
+ {
+   fin_len = 15
+ }
+ else
+ {
+   fin_len = len1
+ }
+
+
+ for(i= 0;i<fin_len;i++)
+ {
+  
+  var in_data = data[i]
+  var url_image = in_data["urlToImage"]
+
+  var dattt = in_data["publishedAt"]
+  var year = dattt.substr(0,4)
+  var month = dattt.substr(5,2)
+  var day = dattt.substr(8,2)
+
+  console.log(dattt)
+  console.log(year)
+  console.log(month)
+  console.log(day)
+
+  var cardb_ = document.createElement("div");
+  cardb_.setAttribute("class","cardb");
+  cardb_.setAttribute("id","maincard"+i);
+  cardb_.setAttribute("onclick","showmore(\""+i+"\")");
+
+  var cardimg_ = document.createElement("img");
+  cardimg_.setAttribute("class","cardimg")
+  cardimg_.setAttribute("src",url_image)
+
+  var crossbutton_ = document.createElement("div")
+  crossbutton_.setAttribute("class","crossbutton")
+  crossbutton_.setAttribute("id","cross"+i)
+  crossbutton_.setAttribute("onclick","deleteit(\""+i+"\")")
+  crossbutton_.innerHTML = "&times;"
+  
+  var headerclass_ = document.createElement("div")
+  headerclass_.setAttribute("class","headerclass")
+
+  var internalheader_ = document.createElement("h4")
+  internalheader_.setAttribute("class","internalheader")
+  internalheader_.innerHTML = in_data["title"]
+
+  var cutthis_ = document.createElement("p")
+  cutthis_.setAttribute("class","cutthis")
+  cutthis_.setAttribute("id","thisis"+i)
+  // ans = cutthisasper(in_data["description"])
+  // 
+  word1 = in_data["description"]
+  ll23 = word1.length
+  if ( ll23 > 62)
+  {
+    for(ii=62 ; ii>0; ii-- )
+    {
+      if (word1[ii] == " "){
+        ll23 = ii
+        break;
+      }
+      
+    }
+  
+  ans = word1.substr(0,ll23)
+  if (ans[ll23-1] == ".")
+  {
+    ans_final = ans.substr(0,ll23-1)+"..."
+  }
+  else{
+    ans_final = ans+"..."
+  }
+  
+
+  }
+  else{
+    ans_final = in_data["description"]
+  }
+  cutthis_.innerHTML = ans_final;
+
+  var cuttext_ = document.createElement("div")
+  cuttext_.setAttribute("class","cuttext")
+  cuttext_.setAttribute("id","showthis"+i)
+
+  var ptag1 = document.createElement("p")
+  ptag1.setAttribute("id","ptag")
+  var b1 = document.createElement("b")
+  b1.innerHTML = "Author:"
+  
+
+
+  var ptag2 = document.createElement("p")
+  ptag2.setAttribute("id","ptag")
+  var b2 = document.createElement("b")
+  b2.innerHTML = "Source:"
+  
+
+  var ptag3 = document.createElement("p")
+  ptag3.setAttribute("id","ptag")
+  var b3 = document.createElement("b")
+  b3.innerHTML = "Date:"
+  
+
+  var ptag4 = document.createElement("p")
+  ptag4.innerHTML = in_data["description"]
+  ptag4.setAttribute("id","ptag_1")
+
+  var atag = document.createElement("a");
+  atag.href = in_data["url"]
+  atag.target = "_blank"
+  atag.innerHTML = "See original post"
+
+  cardb_.appendChild(cardimg_)
+  cardb_.appendChild(crossbutton_)
+
+  headerclass_.appendChild(internalheader_)
+  headerclass_.appendChild(cutthis_)
+  cardb_.appendChild(headerclass_)
+
+  
+  ptag1.appendChild(b1)
+  var t1 = document.createTextNode("   "+in_data["author"])
+  ptag1.appendChild(t1)
+
+  ptag2.appendChild(b2)
+  var t2 = document.createTextNode("   "+in_data["source"]["name"])
+  ptag2.appendChild(t2)
+
+  ptag3.appendChild(b3)
+  var t3 = document.createTextNode("   "+day+"/"+month+"/"+year)
+  ptag3.appendChild(t3)
+
+  
+
+  cuttext_.appendChild(ptag1)
+  cuttext_.appendChild(ptag2)
+  cuttext_.appendChild(ptag3)
+  cuttext_.appendChild(ptag4)
+  cuttext_.appendChild(atag)
+
+  cardb_.appendChild(cuttext_)
+  
+  if(i>4)
+  {
+    cardb_.style.display = "none";
+  }
+ 
+  document.getElementById("belowcard").appendChild(cardb_)
+
+
+ }
+ 
+ if (len1 > 5)
+ {
+  var showmore1 = document.createElement("button");
+ showmore1.setAttribute("id","button_show");
+ showmore1.innerHTML = "Show More";
+ showmore1.setAttribute("onclick","showmore1(\""+len1+"\")");
+ document.getElementById("belowcard").appendChild(showmore1);
+  
+ }
+ 
+
+}
+function resetthis() {
+  document.getElementById("grid").reset()
+  inputText = document.getElementById("keyword");
+  inputText.style.borderColor = "red";
+  document.querySelector("#today").valueAsDate = new Date();
+  document.querySelector("#nottoday").valueAsDate = new Date(new Date().setDate(new Date().getDate() - 7));
+  var qq = document.getElementById("belowcard")
+  qq.innerHTML = ""
+
+  }
+  
+
+function showmore1(num){
+  for(i=5;i<15;i++)
+  {
+    document.getElementById("maincard"+i).style.display = "block"
+
+
+  }
+  document.getElementById("button_show").style.display = "none"
+  if (document.getElementById("button_less") == null)
+  {
+    var showless1 = document.createElement("button")
+    showless1.setAttribute("id","button_less")
+    showless1.innerHTML = "Show Less"
+    showless1.setAttribute("onclick","showless1(\""+num+"\")")
+    document.getElementById("belowcard").appendChild(showless1)
+    
+
+  }
+  else{
+    document.getElementById("button_less").style.display = "block"
+    
+  }
+
+
+}
+function cutthisasper(word)
+{ 
+
+  ll = word.length
+  if ( ll > 62)
+  {
+    for(i=62 ; i>0; i-- )
+    {
+      word[i] == " "
+      ll = i
+      break;
+    }
+  }
+  ans = word.substr(0,ll-1)
+  return ans+"...";
+
+}
+
+function showless1(num1)
+{
+  for(i=14;i>4;i--)
+  {
+    document.getElementById("maincard"+i).style.display = "none"
+
+
+  }
+  document.getElementById("button_less").style.display = "none"
+  document.getElementById("button_show").style.display = "block"
+
+}
+
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+function switch_div(show) {  
+  document.getElementById("show_"+show).style.display = "block";
+  document.getElementById("show_"+((show==1)?2:1)).style.display = "none";
+  senddata("all")
+
+} 
+
+</script>
+</body>
+</html>
